@@ -3,12 +3,17 @@
 #include <math.h>
 #include <vector>
 
-
 double Function::evaluate(double x) {
+  if (this->f == nullptr) {
+    return x;
+  }
   return this->f->evaluate(x);
 }
 Function::Function(Function &f) {
   this->f = &f;
+}
+Function::Function() {
+  this->f = nullptr;
 }
 
 double Sum::evaluate(double x) {

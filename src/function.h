@@ -8,6 +8,7 @@ class Function {
 public:
   double evaluate(double x);
   Function(Function &f);
+  Function();
 };
 
 class Sum : public Function {
