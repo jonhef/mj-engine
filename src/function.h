@@ -10,6 +10,12 @@ public:
   Function* getFunction();
   Function(Function &f);
   Function();
+  Function* operator*(Function &rf);
+  Function* operator+(Function &rf);
+  Function* operator-(Function &rf);
+  Function* operator/(Function &rf);
+  Function* operator-();
+  double operator()(double x);
 };
 
 class Sum : public Function {

@@ -13,6 +13,24 @@ Function::Function() {
 Function* Function::getFunction() {
   return this->f;
 }
+Function* Function::operator*(Function &rf) {
+  return new Product(*this, rf);
+}
+Function* Function::operator+(Function &rf) {
+  return new Sum(*this, rf);
+}
+Function* Function::operator-(Function &rf) {
+  return new Subtract(*this, rf);
+}
+Function* Function::operator/(Function &rf) {
+  return new Divide(*this, rf);
+}
+Function* Function::operator-() {
+  return new Product(*this, new Constant(-1));
+}
+double Function::operator()(double x) {
+  return this->evaluate(x);
+}
 
 double Sum::evaluate(double x) {
   double sum = 0;
