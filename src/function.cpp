@@ -10,6 +10,9 @@ Function::Function(Function &f) {
 Function::Function() {
   this->f = nullptr;
 }
+Function* Function::getFunction() {
+  return this->f;
+}
 
 double Sum::evaluate(double x) {
   double sum = 0;

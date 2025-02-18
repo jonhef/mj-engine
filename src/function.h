@@ -7,6 +7,7 @@ class Function {
   Function *f;
 public:
   virtual double evaluate(double x) = 0;
+  Function* getFunction();
   Function(Function &f);
   Function();
 };

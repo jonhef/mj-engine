@@ -8,6 +8,7 @@ class Power : public Function {
 public:
   double evaluate(double x);
   Power(Function& base, double p);
+  double getPower() const;
 };
 
 class Sine : public Function {
@@ -30,6 +31,7 @@ class Log : public Function {
 public:
   double evaluate(double x);
   Log(Function& f, double base);
+  double getBase() const;
 };
 
 class Exp : public Function {
@@ -38,6 +40,7 @@ class Exp : public Function {
 public:
   double evaluate(double x);
   Exp(Function& f, double base);
+  double getBase() const;
 };
 
 class Asine : public Function {
@@ -67,5 +70,7 @@ class Atan2 : public Function {
 public:
   double evaluate(double x);
   Atan2(Function& f1, Function& f2);
+  Function* getF1();
+  Function* getF2();
 };
 #endif

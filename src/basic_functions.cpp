@@ -8,6 +8,9 @@ Power::Power(Function& f, double p) {
   this->f = &f;
   this->p = p;
 }
+double Power::getPower() const {
+  return this->p;
+}
 
 double Sine::evaluate(double x) {
   return sin(this->f->evaluate(x));
@@ -30,6 +33,9 @@ Log::Log(Function &f, double base) {
   this->f = &f;
   this->base = base;
 }
+double Log::getBase() const {
+  return this->base;
+}
 
 double Exp::evaluate(double x) {
   return pow(this->base, this->f->evaluate(x));
@@ -37,6 +43,9 @@ double Exp::evaluate(double x) {
 Exp::Exp(Function &f, double base) {
   this->f = &f;
   this->base = base;
+}
+double Exp::getBase() const {
+  return this->base;
 }
 
 double Asine::evaluate(double x) {
@@ -66,4 +75,10 @@ double Atan2::evaluate(double x) {
 Atan2::Atan2(Function &f1, Function &f2) {
   this->f1 = &f1;
   this->f2 = &f2;
+}
+Function* Atan2::getF1() {
+  return this->f1;
+}
+Function* Atan2::getF2() {
+  return this->f2;
 }
