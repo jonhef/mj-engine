@@ -6,23 +6,31 @@
 class Function {
   Function *f;
 public:
-  double evaluate(double x);
+  virtual double evaluate(double x) = 0;
   Function(Function &f);
   Function();
 };
 
 class Sum : public Function {
-  std::vector<Function*> fs;
+  Function* f1;
+  Function* f2;
 public:
   double evaluate(double x);
-  Sum(std::vector<Function*> &fs);
+  Sum(Function &f1, Function &f2);
+  Sum();
+  Function* getAddend();
+  Function* getAddend2();
 };
 
 class Product : public Function {
-  std::vector<Function*> fs;
+  Function* f1;
+  Function* f2;
 public:
   double evaluate(double x);
-  Product(std::vector<Function*> &fs);
+  Function* getMultilpier();
+  Function* getMultiplicand();
+  Product(Function &f1, Function &f2);
+  Product();
 };
 
 class Divide : public Function {
@@ -30,15 +38,21 @@ class Divide : public Function {
   Function* f2;
 public:
   double evaluate(double x);
-  Divide(Function numerator, Function denominator);
+  Function* getNumerator();
+  Function* getDenominator();
+  Divide(Function &numerator, Function &denominator);
+  Divide();
 };
 
 class Subtract : public Function {
-  Function f1;
-  Function f2;
+  Function* f1;
+  Function* f2;
 public:
   double evaluate(double x);
-  Subtract(Function minuend, Function subtrahend);
+  Function* getMinuend();
+  Function* getSubtrahend();
+  Subtract(Function &minuend, Function &subtrahend);
+  Subtract();
 };
 
 class Constant : public Function {
@@ -46,6 +60,7 @@ class Constant : public Function {
 public:
   double evaluate(double x);
   Constant(double c);
+  Constant();
 };
 
 #endif
