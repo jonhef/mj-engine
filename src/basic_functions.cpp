@@ -1,84 +1,107 @@
 #include "basic_functions.h"
 #include <math.h>
 
-double Power::evaluate(double x) {
-  return pow(f->evaluate(x), this->p); 
+template <typename T>
+T Power<T>::evaluate(T x) {
+  return this->f->evaluate(x)^this->p;
 }
-Power::Power(Function& f, double p) {
+template <typename T>
+Power<T>::Power(Function<T>& f, T p) {
   this->f = &f;
   this->p = p;
 }
-double Power::getPower() const {
+template <typename T>
+T Power<T>::getPower() const {
   return this->p;
 }
 
-double Sine::evaluate(double x) {
+template <typename T>
+T Sine<T>::evaluate(T x) {
   return sin(this->f->evaluate(x));
 }
-Sine::Sine(Function& f) {
+template <typename T>
+Sine<T>::Sine(Function<T>& f) {
   this->f = &f;
 }
 
-double Cosine::evaluate(double x) {
+template <typename T>
+T Cosine<T>::evaluate(T x) {
   return cos(this->f->evaluate(x));
 }
-Cosine::Cosine(Function &f) {
+template <typename T>
+Cosine<T>::Cosine(Function<T> &f) {
   this->f = &f;
 }
 
-double Log::evaluate(double x) {
+template <typename T>
+T Log<T>::evaluate(T x) {
   return log(this->f->evaluate(x))/log(this->base);
 }
-Log::Log(Function &f, double base) {
+template <typename T>
+Log<T>::Log(Function<T> &f, T base) {
   this->f = &f;
   this->base = base;
 }
-double Log::getBase() const {
+template <typename T>
+T Log<T>::getBase() const {
   return this->base;
 }
 
-double Exp::evaluate(double x) {
-  return pow(this->base, this->f->evaluate(x));
+template <typename T>
+T Exp<T>::evaluate(T x) {
+  return exp(this->f->evaluate(x))/exp(this->base);
 }
-Exp::Exp(Function &f, double base) {
+template <typename T>
+Exp<T>::Exp(Function<T> &f, T base) {
   this->f = &f;
   this->base = base;
 }
-double Exp::getBase() const {
+template <typename T>
+T Exp<T>::getBase() const {
   return this->base;
 }
 
-double Asine::evaluate(double x) {
+template <typename T>
+T Asine<T>::evaluate(T x) {
   return asin(this->f->evaluate(x));
 }
-Asine::Asine(Function &f) {
+template <typename T>
+Asine<T>::Asine(Function<T> &f) {
   this->f = &f;
 }
 
-double Acosine::evaluate(double x) {
+template <typename T>
+T Acosine<T>::evaluate(T x) {
   return acos(this->f->evaluate(x));
 }
-Acosine::Acosine(Function &f) {
+template <typename T>
+Acosine<T>::Acosine(Function<T> &f) {
   this->f = &f;
 }
 
-double Atan::evaluate(double x) {
+template <typename T>
+T Atan<T>::evaluate(T x) {
   return atan(this->f->evaluate(x));
 }
-Atan::Atan(Function &f) {
+template <typename T>
+Atan<T>::Atan(Function<T> &f) {
   this->f = &f;
 }
 
-double Atan2::evaluate(double x) {
+template <typename T>
+T Atan2<T>::evaluate(T x) {
   return atan2(this->f1->evaluate(x), this->f2->evaluate(x));
 }
-Atan2::Atan2(Function &f1, Function &f2) {
+template <typename T>
+Atan2<T>::Atan2(Function<T> &f1, Function<T> &f2) {
   this->f1 = &f1;
   this->f2 = &f2;
 }
-Function* Atan2::getF1() {
+template <typename T>
+Function<T>* Atan2<T>::getF1() {
   return this->f1;
 }
-Function* Atan2::getF2() {
+template <typename T>
+Function<T>* Atan2<T>::getF2() {
   return this->f2;
 }

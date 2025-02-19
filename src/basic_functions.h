@@ -2,75 +2,83 @@
 #define BASIC_FUNCTIONS_H
 #include "function.h"
 
-class Power : public Function {
-  Function* f;
-  double p;
+template<typename T>
+class Power : public Function<T> {
+  Function<T>* f;
+  T p;
 public:
-  double evaluate(double x);
-  Power(Function& base, double p);
-  double getPower() const;
+  T evaluate(T x);
+  Power(Function<T>& base, T p);
+  T getPower() const;
+};
+template <typename T>
+class Sine : public Function<T> {
+  Function<T>* f;
+public:
+  T evaluate(T x);
+  Sine(Function<T>& f);
 };
 
-class Sine : public Function {
-  Function* f;
+template <typename T>
+class Cosine : public Function<T> {
+  Function<T>* f;
 public:
-  double evaluate(double x);
-  Sine(Function& f);
+  T evaluate(T x);
+  Cosine(Function<T>& f);
 };
 
-class Cosine : public Function {
-  Function* f;
+template <typename T>
+class Log : public Function<T> {
+  Function<T>* f;
+  T base;
 public:
-  double evaluate(double x);
-  Cosine(Function& f);
+  T evaluate(T x);
+  Log(Function<T>& f, T base);
+  T getBase() const;
 };
 
-class Log : public Function {
-  Function* f;
-  double base;
+template <typename T>
+class Exp : public Function<T> {
+  Function<T>* f;
+  T base;
 public:
-  double evaluate(double x);
-  Log(Function& f, double base);
-  double getBase() const;
+  T evaluate(T x);
+  Exp(Function<T>& f, T base);
+  T getBase() const;
 };
 
-class Exp : public Function {
-  Function* f;
-  double base;
+template <typename T>
+class Asine : public Function<T> {
+  Function<T>* f;
 public:
-  double evaluate(double x);
-  Exp(Function& f, double base);
-  double getBase() const;
+  T evaluate(T x);
+  Asine(Function<T>& f);
 };
 
-class Asine : public Function {
-  Function* f;
+template <typename T>
+class Acosine : public Function<T> {
+  Function<T>* f;
 public:
-  double evaluate(double x);
-  Asine(Function& f);
+  T evaluate(T x);
+  Acosine(Function<T>& f);
 };
 
-class Acosine : public Function {
-  Function* f;
+template <typename T>
+class Atan : public Function<T> {
+  Function<T>* f;
 public:
-  double evaluate(double x);
-  Acosine(Function& f);
+  T evaluate(T x);
+  Atan(Function<T>& f);
 };
 
-class Atan : public Function {
-  Function* f;
+template <typename T>
+class Atan2 : public Function<T> {
+  Function<T>* f1;
+  Function<T>* f2;
 public:
-  double evaluate(double x);
-  Atan(Function& f);
-};
-
-class Atan2 : public Function {
-  Function* f1;
-  Function* f2;
-public:
-  double evaluate(double x);
-  Atan2(Function& f1, Function& f2);
-  Function* getF1();
-  Function* getF2();
+  T evaluate(T x);
+  Atan2(Function<T>& f1, Function<T>& f2);
+  Function<T>* getF1();
+  Function<T>* getF2();
 };
 #endif
