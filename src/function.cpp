@@ -4,100 +4,128 @@
 #include <vector>
 
 // Constructors for function(abstract) class
-Function::Function(Function &f) {
+template <typename T>
+Function<T>::Function(Function<T> &f) {
   this->f = &f;
 }
-Function::Function() {
+template <typename T>
+Function<T>::Function<T>() {
   this->f = nullptr;
 }
-Function* Function::getFunction() {
+template <typename T>
+Function<T>* Function<T>::getFunction() {
   return this->f;
 }
-Function* Function::operator*(Function &rf) {
-  return new Product(*this, rf);
+template <typename T>
+Function<T>* Function<T>::operator*(Function<T> &rf) {
+  return new Product<T>(*this, rf);
 }
-Function* Function::operator+(Function &rf) {
-  return new Sum(*this, rf);
+template <typename T>
+Function<T>* Function<T>::operator+(Function<T> &rf) {
+  return new Sum<T>(*this, rf);
 }
-Function* Function::operator-(Function &rf) {
-  return new Subtract(*this, rf);
+template <typename T>
+Function<T>* Function<T>::operator-(Function<T> &rf) {
+  return new Subtract<T>(*this, rf);
 }
-Function* Function::operator/(Function &rf) {
-  return new Divide(*this, rf);
+template <typename T>
+Function<T>* Function<T>::operator/(Function<T> &rf) {
+  return new Divide<T>(*this, rf);
 }
-Function* Function::operator-() {
-  return new Product(*this, new Constant(-1));
+template <typename T>
+Function<T>* Function<T>::operator-() {
+  return new Product<T>(*this, new Constant<T>(-1));
 }
-double Function::operator()(double x) {
+template <typename T>
+T Function<T>::operator()(T x) {
   return this->evaluate(x);
 }
 
-double Sum::evaluate(double x) {
-  double sum = 0;
+template <typename T>
+T Sum<T>::evaluate(T x) {
+  T sum = 0;
   sum += this->f1->evaluate(x);
   sum += this->f2->evaluate(x);
   return sum;
 }
-Sum::Sum(Function& f1, Function& f2) {
+template <typename T>
+Sum<T>::Sum(Function<T>& f1, Function<T>& f2) {
   this->f1 = &f1;
   this->f2 = &f2;
 }
-Function* Sum::getAddend() {
+template <typename T>
+Function<T>* Sum<T>::getAddend() {
   return this->f1;
 }
-Function* Sum::getAddend2() {
+template <typename T>
+Function<T>* Sum<T>::getAddend2() {
   return this->f2;
 }
-Sum::Sum() {
+template <typename T>
+Sum<T>::Sum() {
   this->f1 = nullptr;
   this->f2 = nullptr;
 }
 
-Function* Product::getMultilpier() {
+template <typename T>
+Function<T>* Product<T>::getMultilpier() {
   return this->f1;
 }
-Function* Product::getMultiplicand() {
+template <typename T>
+Function<T>* Product<T>::getMultiplicand() {
   return this->f2;
 }
-double Product::evaluate(double x) {
+template <typename T>
+T Product<T>::evaluate(T x) {
   return this->f1->evaluate(x) * this->f2->evaluate(x);
 }
-Product::Product(Function& f1, Function& f2) {
+template <typename T>
+Product<T>::Product(Function<T>& f1, Function<T>& f2) {
   this->f1 = &f1;
   this->f2 = &f2;
 }
 
-double Divide::evaluate(double x) {
+template <typename T>
+T Divide<T>::evaluate(T x) {
   return this->f1->evaluate(x) / this->f2->evaluate(x);
 }
-Divide::Divide(Function& numerator, Function& denominator) {
+template <typename T>
+Divide<T>::Divide(Function<T>& numerator, Function<T>& denominator) {
   this->f1 = &numerator;
   this->f2 = &denominator;
 }
-Function* Divide::getNumerator() {
+template <typename T>
+Function<T>* Divide<T>::getNumerator() {
   return this->f1;
 }
-Function* Divide::getDenominator() {
+template <typename T>
+Function<T>* Divide<T>::getDenominator() {
   return this->f2;
 }
 
-double Subtract::evaluate(double x) {
+template <typename T>
+T Subtract<T>::evaluate(T x) {
   return f1->evaluate(x) - f2->evaluate(x);
 }
-Subtract::Subtract(Function& minuend, Function& subtrahend) {
+template <typename T>
+Subtract<T>::Subtract(Function<T>& minuend, Function<T>& subtrahend) {
   this->f1 = &minuend;
   this->f2 = &subtrahend;
 }
-Function* Subtract::getMinuend() {
+template <typename T>
+Function<T>* Subtract<T>::getMinuend() {
   return this->f1;
 }
-Function* Subtract::getSubtrahend() {
+template <typename T>
+Function<T>* Subtract<T>::getSubtrahend() {
   return this->f2;
 }
 
-double Constant::evaluate(double x) {
+template <typename T>
+T Constant<T>::evaluate(T x) {
   return c;
 }
-Constant::Constant(double c) {
+template <typename T>
+Constant<T>::Constant(T c) {
   this->c = c;
 }

@@ -3,10 +3,11 @@
 
 #include <vector>
 
+template<typename T>
 class Function {
   Function *f;
 public:
-  virtual double evaluate(double x) = 0;
+  virtual T evaluate(T x) = 0;
   Function* getFunction();
   Function(Function &f);
   Function();
@@ -15,58 +16,63 @@ public:
   Function* operator-(Function &rf);
   Function* operator/(Function &rf);
   Function* operator-();
-  double operator()(double x);
+  T operator()(T x);
 };
 
-class Sum : public Function {
-  Function* f1;
-  Function* f2;
+template<typename T>
+class Sum : public Function<T> {
+  Function<T>* f1;
+  Function<T>* f2;
 public:
-  double evaluate(double x);
-  Sum(Function &f1, Function &f2);
+  T evaluate(T x);
+  Sum(Function<T> &f1, Function<T> &f2);
   Sum();
-  Function* getAddend();
-  Function* getAddend2();
+  Function<T>* getAddend();
+  Function<T>* getAddend2();
 };
 
-class Product : public Function {
-  Function* f1;
-  Function* f2;
+template<typename T>
+class Product : public Function<T> {
+  Function<T>* f1;
+  Function<T>* f2;
 public:
-  double evaluate(double x);
-  Function* getMultilpier();
-  Function* getMultiplicand();
-  Product(Function &f1, Function &f2);
+  T evaluate(T x);
+  Function<T>* getMultilpier();
+  Function<T>* getMultiplicand();
+  Product(Function<T> &f1, Function<T> &f2);
   Product();
 };
 
-class Divide : public Function {
-  Function* f1;
-  Function* f2;
+template<typename T>
+class Divide : public Function<T> {
+  Function<T>* f1;
+  Function<T>* f2;
 public:
-  double evaluate(double x);
-  Function* getNumerator();
-  Function* getDenominator();
-  Divide(Function &numerator, Function &denominator);
+  T evaluate(T x);
+  Function<T>* getNumerator();
+  Function<T>* getDenominator();
+  Divide(Function<T> &numerator, Function<T> &denominator);
   Divide();
 };
 
-class Subtract : public Function {
-  Function* f1;
-  Function* f2;
+template<typename T>
+class Subtract : public Function<T> {
+  Function<T>* f1;
+  Function<T>* f2;
 public:
-  double evaluate(double x);
-  Function* getMinuend();
-  Function* getSubtrahend();
-  Subtract(Function &minuend, Function &subtrahend);
+  T evaluate(T x);
+  Function<T>* getMinuend();
+  Function<T>* getSubtrahend();
+  Subtract(Function<T> &minuend, Function<T> &subtrahend);
   Subtract();
 };
 
-class Constant : public Function {
-  double c;
+template<typename T>
+class Constant : public Function<T> {
+  T c;
 public:
-  double evaluate(double x);
-  Constant(double c);
+  T evaluate(T x);
+  Constant(T c);
   Constant();
 };
 
