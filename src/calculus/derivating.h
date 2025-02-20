@@ -5,13 +5,14 @@
 #include "../function.h"
 #include "../basic_functions.h"
 
-class Derivative : Function {
-  Function* f;
-  Function* df;
+template <typename T>
+class Derivative : Function<T> {
+  Function<T>* f;
+  Function<T>* df;
 public:
   Derivative();
-  Derivative(Function &f);
-  double evaluate(double x);
+  Derivative(Function<T> &f);
+  T evaluate(T x);
 };
 
 #endif
