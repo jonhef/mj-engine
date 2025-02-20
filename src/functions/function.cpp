@@ -9,7 +9,7 @@ Function<T>::Function(Function<T> &f) {
   this->f = &f;
 }
 template <typename T>
-Function<T>::Function<T>() {
+Function<T>::Function() {
   this->f = nullptr;
 }
 template <typename T>

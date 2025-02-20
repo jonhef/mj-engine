@@ -1,7 +1,7 @@
 #include "complex.h"
-#include "constant.h"
-#include "function.h"
-#include "basic_functions.h"
+#include "../constant.h"
+#include "../functions/function.h"
+#include "../functions/basic_functions.h"
 #include <math.h>
 
 Complex::Complex(double re, double im) {

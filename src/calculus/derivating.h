@@ -2,8 +2,8 @@
 #define DERIVATING_H
 
 #include "../constant.h"
-#include "../function.h"
-#include "../basic_functions.h"
+#include "../functions/function.h"
+#include "../functions/basic_functions.h"
 
 template <typename T>
 class Derivative : Function<T> {

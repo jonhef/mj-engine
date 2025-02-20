@@ -3,7 +3,7 @@
 
 #include <math.h>
 #include <vector>
-#include "function.h"
+#include "../functions/function.h"
 
 struct ComplexTrigonometric {
   double r;
