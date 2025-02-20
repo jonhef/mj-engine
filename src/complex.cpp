@@ -2,6 +2,7 @@
 #include "constant.h"
 #include "function.h"
 #include "basic_functions.h"
+#include <math.h>
 
 Complex::Complex(double re, double im) {
   this->re = re;
@@ -44,6 +45,24 @@ Complex Ln(Complex x) {
 }
 
 Complex Complex::operator^(Complex &rf) {
-  auto tr = this->getTrigonometric(); 
-  return Complex(pow(this->re, rf.re) * cos(rf.im * this->im), pow(this->re, rf.re) * sin(rf.im * this->im));
+  Complex a = this->Ln() * rf;
+  return Complex::Exp(this->Ln() * rf);
+}
+
+Complex Complex::Ln(long long n) {
+  auto tr = this->getTrigonometric();
+  return Complex(log(tr.r), tr.phi + n*pi);
+}
+
+Complex Complex::Exp() {
+  return Complex(exp(this->re)*cos(this->im), exp(this->re)*sin(this->im));
+}
+
+Complex Complex::Ln(Complex x, long long n) {
+  auto tr = x.getTrigonometric();
+  return Complex(log(tr.r), tr.phi);
+}
+
+Complex Complex::Exp(Complex x) {
+  return Complex(exp(x.re)*cos(x.im), exp(x.re)*sin(x.im));
 }

@@ -33,6 +33,10 @@ public:
   Complex operator/=(Complex &rf);
   Complex operator^=(Complex &rf);
   Complex operator-();
+  Complex Ln(long long n = 0);
+  Complex Exp();
+  static Complex Ln(Complex x, long long n = 0);
+  static Complex Exp(Complex x);
   ~Complex();
 };
 #endif
